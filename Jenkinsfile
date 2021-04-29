@@ -28,13 +28,16 @@ pipeline {
         success {
             echo 'Success!'
             emailext body: 'Test Message',
-            subject: 'Test Subject',
+            subject: 'Success tests',
             to: 'kklimczyk@student.agh.edu.pl'
          
         }
         
         failure {
             echo 'Failure!'
+            emailext body: 'Test Message',
+            subject: 'Tests failed',
+            to: 'kklimczyk@student.agh.edu.pl'
         }
          }
    
