@@ -27,7 +27,10 @@ pipeline {
         
         success {
             echo 'Success!'
-            mail bcc: '', body: 'testcik', cc: '', from: '', replyTo: '', subject: 'Test', to: 'kklimczyk@student.agh.edu.pl'
+            emailext body: 'Test Message',
+            subject: 'Test Subject',
+            to: 'kklimczyk@student.agh.edu.pl'
+         
         }
         
         failure {
