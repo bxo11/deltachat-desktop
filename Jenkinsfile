@@ -16,8 +16,8 @@ pipeline {
         stage('Test') {
             steps {
                 sh '''
-                echo 'Testing..' >> testlogs.txt
-         
+                echo 'Testing..'
+                docker-compose up
                 '''
                 }
         }
@@ -28,19 +28,21 @@ pipeline {
         
         success {
             echo 'Success!'
-            emailext attachLog: true, attachmentsPattern: 'testlogs.txt',
-                body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
+            emailext attachLog: true,
+                body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}",
                 recipientProviders: [developers(), requestor()],
-                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
+                subject: "Success Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
                 to: 'krzysiek.klim1999@gmail.com'
          
         }
         
         failure {
             echo 'Failure!'
-            mail to: 'krzysiek.klim1999@gmail.com',
-            subject: "Status of failed pipeline: ${currentBuild.fullDisplayName}",
-            body: "${env.BUILD_URL} has result ${currentBuild.result}"
+            emailext attachLog: true,
+                body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}",
+                recipientProviders: [developers(), requestor()],
+                subject: "Failed Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
+                to: 'krzysiek.klim1999@gmail.com'
         }
          }
    
