@@ -29,7 +29,7 @@ pipeline {
             echo 'Success!'
             emailext body: 'Test Message',
             subject: 'Success tests',
-            to: 'kklimczyk@student.agh.edu.pl'
+            to: 'krzysiek.klim1999@gmail.com'
          
         }
         
@@ -37,7 +37,7 @@ pipeline {
             echo 'Failure!'
             emailext body: 'Test Message',
             subject: 'Tests failed',
-            to: 'kklimczyk@student.agh.edu.pl'
+            to: 'krzysiek.klim1999@gmail.com'
         }
          }
    
