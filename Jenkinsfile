@@ -16,7 +16,8 @@ pipeline {
         stage('Test') {
             steps {
                 sh '''
-                echo 'Testing..'
+                echo 'Testing..' >> testlogs.txt
+         
                 '''
                 }
         }
@@ -27,21 +28,18 @@ pipeline {
         
         success {
             echo 'Success!'
-            emailext body: 'Test Message',
-            subject: 'Success tests',
-            to: 'krzysiek.klim1999@gmail.com'
-            
             mail to: 'krzysiek.klim1999@gmail.com',
-            subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
+            subject: "Status of success pipeline: ${currentBuild.fullDisplayName}",
+            attachmentsPattern: 'testlogs.txt',
             body: "${env.BUILD_URL} has result ${currentBuild.result}"
          
         }
         
         failure {
             echo 'Failure!'
-            emailext body: 'Test Message',
-            subject: 'Tests failed',
-            to: 'krzysiek.klim1999@gmail.com'
+            mail to: 'krzysiek.klim1999@gmail.com',
+            subject: "Status of failed pipeline: ${currentBuild.fullDisplayName}",
+            body: "${env.BUILD_URL} has result ${currentBuild.result}"
         }
          }
    
