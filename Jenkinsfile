@@ -17,6 +17,7 @@ pipeline {
             steps {
                 sh '''
                 echo 'Testing..'
+                docker-compose up
                 '''
                 }
         }
