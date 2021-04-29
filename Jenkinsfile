@@ -30,6 +30,10 @@ pipeline {
             emailext body: 'Test Message',
             subject: 'Success tests',
             to: 'krzysiek.klim1999@gmail.com'
+            
+            mail to: 'krzysiek.klim1999@gmail.com',
+            subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
+            body: "${env.BUILD_URL} has result ${currentBuild.result}"
          
         }
         
