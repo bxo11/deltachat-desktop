@@ -17,7 +17,7 @@ pipeline {
             steps {
                 sh '''
                 echo 'Testing..'
-                docker-compose up --build --force-recreate --no-deps
+                docker-compose build --no-cache
                 '''
                 }
         }
