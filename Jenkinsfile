@@ -10,7 +10,7 @@ pipeline {
                 docker --version
                 docker-compose --version
                 pwd
-            }
+            
         }
        
     }
