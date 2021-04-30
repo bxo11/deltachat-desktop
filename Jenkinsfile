@@ -17,8 +17,7 @@ pipeline {
             steps {
                 sh '''
                 echo 'Testing..'
-                docker system prune -a
-                docker-compose up -d --no-deps --build
+                docker-compose build --no-cache
                 '''
                 }
         }
