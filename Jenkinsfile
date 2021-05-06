@@ -14,7 +14,7 @@ pipeline {
             steps {
                 sh '''
                 echo 'Building..'
-                docker build -f Dockerfile-build-agent .
+                
                 '''
                 }
                 
@@ -27,7 +27,7 @@ pipeline {
             steps {
                 sh '''
                 echo 'Testing..'
-                docker build -f Dockerfile-test-agent .
+                
                 '''
                 }
         }
