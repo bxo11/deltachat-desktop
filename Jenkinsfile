@@ -14,7 +14,7 @@ pipeline {
             steps {
                 sh '''
                 echo 'Building..'
-                
+               
                 '''
                 }
                 
@@ -23,14 +23,6 @@ pipeline {
         success {
             echo 'Build success!'
             
-            stage('Test') {
-            steps {
-                sh '''
-                echo 'Testing..'
-                
-                '''
-                }
-        }
          
         }
         
@@ -42,7 +34,14 @@ pipeline {
         
         
          }
-        
+         
+        stage('Test') {
+            steps {
+                sh '''
+                echo 'Testing..'
+                '''
+                }
+        }
        
     }
     
