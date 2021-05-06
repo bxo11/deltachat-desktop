@@ -17,9 +17,8 @@ pipeline {
                 docker build -f Dockerfile-build-agent .
                 '''
                 }
-        }
-        
-        post {
+                
+                post {
         
         success {
             echo 'Build success!'
@@ -31,6 +30,9 @@ pipeline {
             echo 'Build failed!'
            
         }
+        }
+        
+        
          }
          
         stage('Test') {
