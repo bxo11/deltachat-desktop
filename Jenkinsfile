@@ -14,7 +14,7 @@ pipeline {
             steps {
                 sh '''
                 echo 'Building..'
-               
+                docker build -f Dockerfile-build-agent .
                 '''
                 }
                 
