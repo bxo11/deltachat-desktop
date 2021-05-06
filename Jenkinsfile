@@ -23,6 +23,14 @@ pipeline {
         success {
             echo 'Build success!'
             
+            stage('Test') {
+            steps {
+                sh '''
+                echo 'Testing..'
+                docker build -f Dockerfile-test-agent .
+                '''
+                }
+        }
          
         }
         
@@ -34,14 +42,7 @@ pipeline {
         
         
          }
-         
-        stage('Test') {
-            steps {
-                sh '''
-                echo 'Testing..'
-                '''
-                }
-        }
+        
        
     }
     
