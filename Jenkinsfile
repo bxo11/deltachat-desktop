@@ -19,6 +19,20 @@ pipeline {
                 }
         }
         
+        post {
+        
+        success {
+            echo 'Build success!'
+            
+         
+        }
+        
+        failure {
+            echo 'Build failed!'
+           
+        }
+         }
+         
         stage('Test') {
             steps {
                 sh '''
