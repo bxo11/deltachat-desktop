@@ -13,11 +13,19 @@ pipeline {
                 '''
                 }
         }
+        
+        stage('Build') {
+            steps {
+                sh '''
+                echo 'Building..'
+                '''
+                }
+        }
+        
         stage('Test') {
             steps {
                 sh '''
                 echo 'Testing..'
-                docker-compose build --no-cache
                 '''
                 }
         }
@@ -28,21 +36,13 @@ pipeline {
         
         success {
             echo 'Success!'
-            emailext attachLog: true,
-                body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}",
-                recipientProviders: [developers(), requestor()],
-                subject: "Success Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
-                to: 'krzysiek.klim1999@gmail.com'
+            
          
         }
         
         failure {
             echo 'Failure!'
-            emailext attachLog: true,
-                body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}",
-                recipientProviders: [developers(), requestor()],
-                subject: "Failed Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
-                to: 'krzysiek.klim1999@gmail.com'
+           
         }
          }
    
