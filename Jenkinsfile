@@ -2,33 +2,34 @@ pipeline {
     agent any
 
     stages {
-        stage('Pre') {
-            steps {
-                sh '''
-                ls
-                '''
-                }
-        }
-        
         stage('Build') {
             steps {
                 sh '''
                 echo 'Building..'
+                docker build -f Dockerfile-build-agent .
                
                 '''
                 }
                 
                 post {
         
-        success {
-            echo 'Build success!'
-            
+		success {
+		echo 'Success!'
+		emailext attachLog: true,
+		body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}",
+		recipientProviders: [developers(), requestor()],
+		subject: "Success Jenkins Build",
+		to: 'krzysiek.klim1999@gmail.com'
          
         }
         
-        failure {
-            echo 'Build failed!'
-           
+        	failure {
+                echo 'Failure!'
+                emailext attachLog: true,
+                body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}",
+                recipientProviders: [developers(), requestor()],
+                subject: "Failed Jenkins Build",
+                to: 'krzysiek.klim1999@gmail.com'
         }
         }
         
@@ -39,24 +40,35 @@ pipeline {
             steps {
                 sh '''
                 echo 'Testing..'
+                docker build -f Dockerfile-test-agent .
                 '''
                 }
-        }
-       
-    }
-    
-    post {
+                }
+                post {
         
         success {
-            echo 'Success!'
-            
+		echo 'Success!'
+		emailext attachLog: true,
+		body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}",
+		recipientProviders: [developers(), requestor()],
+		subject: "Success Jenkins Test ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
+		to: 'krzysiek.klim1999@gmail.com'
          
         }
         
         failure {
-            echo 'Failure!'
-           
+                echo 'Failure!'
+                emailext attachLog: true,
+                body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}",
+                recipientProviders: [developers(), requestor()],
+                subject: "Failed Jenkins Test ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
+                to: 'krzysiek.klim1999@gmail.com'
         }
          }
+       
+       
+    }
+    
+    
    
 }
