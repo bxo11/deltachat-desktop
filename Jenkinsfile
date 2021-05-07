@@ -6,6 +6,7 @@ pipeline {
             steps {
                 sh '''
                 echo 'Building..'
+                apt-get -y install npm
                 git pull origin master
                 npm install
                 npm run build
