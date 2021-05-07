@@ -40,25 +40,25 @@ pipeline {
                 docker build -f Dockerfile-test-agent .
                 '''
                 }
-            }
 
             post {
                 success {
-                echo 'Success!'
-                emailext attachLog: true,
-                body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}",
-                recipientProviders: [developers(), requestor()],
-                subject: "Success Jenkins Test ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
-                to: 'krzysiek.klim1999@gmail.com'
+                    echo 'Success!'
+                    emailext attachLog: true,
+                    body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}",
+                    recipientProviders: [developers(), requestor()],
+                    subject: "Success Jenkins Test ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
+                    to: 'krzysiek.klim1999@gmail.com'
                 }
         
-            failure {
-                echo 'Failure!'
-                emailext attachLog: true,
-                body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}",
-                recipientProviders: [developers(), requestor()],
-                subject: "Failed Jenkins Test ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
-                to: 'krzysiek.klim1999@gmail.com'
+                failure {
+                    echo 'Failure!'
+                    emailext attachLog: true,
+                    body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}",
+                    recipientProviders: [developers(), requestor()],
+                    subject: "Failed Jenkins Test ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
+                    to: 'krzysiek.klim1999@gmail.com'
+                }
             }
         }
     }
