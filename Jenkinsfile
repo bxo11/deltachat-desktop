@@ -13,7 +13,6 @@ pipeline {
                 '''
             }
                 
-        
             post {
                 success {
                     echo 'Success!'
