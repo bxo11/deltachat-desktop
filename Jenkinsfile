@@ -6,7 +6,7 @@ pipeline {
             steps {
                 sh '''
                 echo 'Building..'
-                git pull
+                git pull remote master
                 npm install
                 npm run build
                 '''
