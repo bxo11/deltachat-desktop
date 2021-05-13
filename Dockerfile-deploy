@@ -1,3 +1,4 @@
 FROM ubuntu:latest
-COPY /var/jenkins_home/workspace/lab09 ./
+COPY /var/jenkins_home/workspace/lab09 /app
+RUN apt-get -y install npm
 RUN npm start
