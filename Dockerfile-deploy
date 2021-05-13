@@ -1,2 +1,3 @@
 FROM ubuntu:latest
-COPY <SRC> ./
+COPY /var/jenkins_home/workspace/lab09 ./
+RUN npm start

@@ -69,6 +69,7 @@ pipeline {
             steps {
                 sh '''
                 echo 'Deploying..'
+                docker build -f Dockerfile-deploy .
                 '''
             }
         }
