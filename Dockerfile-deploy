@@ -1,5 +1,10 @@
 FROM ubuntu:latest
-COPY . .
 RUN apt-get -y install npm
+RUN ls
+RUN pwd
+RUN mkdir app
+RUN ls
+RUN pwd
+COPY . ./app/
 WORKDIR ./app
 RUN npm start
