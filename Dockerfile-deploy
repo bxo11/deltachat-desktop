@@ -1,5 +1,9 @@
 FROM ubuntu:latest
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get -y update
+RUN apt-get -y upgrade
 RUN apt-get -y install npm
+
 RUN ls
 RUN pwd
 RUN mkdir app
