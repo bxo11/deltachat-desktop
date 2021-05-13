@@ -8,6 +8,8 @@ pipeline {
                 echo 'Building..'
                 apt-get -y install npm
                 git pull origin master
+                pwd
+                ls
                 npm install
                 npm run build
                 '''
@@ -62,5 +64,14 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy') {
+            steps {
+                sh '''
+                echo 'Deploying..'
+                '''
+            }
+        }
+
     }
 }
