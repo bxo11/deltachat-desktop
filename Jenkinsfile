@@ -9,7 +9,7 @@ pipeline {
                 apt -y update
                 apt -y upgrade
                 apt install curl
-                curl -sL https://deb.nodesource.com/setup_14.x | -E bash -
+                curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
                 apt -y install nodejs
                 node --version
                 npm --version
