@@ -6,13 +6,13 @@ pipeline {
             steps {
                 sh '''
                 echo 'Building..'
-                apt-get -y update
-                apt-get -y upgrade
-                apt-get install curl
-                curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
-                bash nodesource_setup.sh
-                apt-get -y install nodejs
-                apt-get -y install npm
+                apt -y update
+                apt -y upgrade
+                apt install curl
+                curl -sL https://deb.nodesource.com/setup_14.x | -E bash -
+                apt -y install nodejs
+                node --version
+                npm --version
                 git pull origin master
                 npm install
                 npm run build
