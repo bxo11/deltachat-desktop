@@ -8,6 +8,7 @@ pipeline {
                 echo 'Building..'
                 apt -y update
                 apt -y upgrade
+                apt install sudo -y
                 apt install curl
                 curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
                 apt -y install nodejs
