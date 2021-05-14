@@ -11,10 +11,9 @@ pipeline {
                 apt-get install curl
                 curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
                 bash nodesource_setup.sh
+                apt-get -y install nodejs
                 apt-get -y install npm
                 git pull origin master
-                pwd
-                ls
                 npm install
                 npm run build
                 '''
