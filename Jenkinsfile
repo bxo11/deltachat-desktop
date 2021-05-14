@@ -6,6 +6,8 @@ pipeline {
             steps {
                 sh '''
                 echo 'Building..'
+                apt-get -y update
+                apt-get -y upgrade
                 apt-get -y install npm
                 git pull origin master
                 pwd
