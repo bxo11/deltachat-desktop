@@ -2,14 +2,11 @@ FROM ubuntu:latest
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get -y update
 RUN apt-get -y upgrade
+RUN apt-get install curl
+RUN curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
+RUN bash nodesource_setup.sh
 RUN apt-get -y install npm
 
+COPY . ./deltachat/
+WORKDIR ./deltachat
 RUN ls
-RUN pwd
-RUN mkdir app
-COPY . ./app/
-WORKDIR ./app
-RUN ls
-RUN pwd
-RUN npm install
-RUN npm start
