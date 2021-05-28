@@ -115,6 +115,7 @@ class DeltaRemote {
   ): Promise<number>
   call(fnName: 'contacts.getDMChatId', contactId: number): Promise<number>
   call(fnName: 'contacts.getEncryptionInfo', contactId: number): Promise<string>
+  call(fnName: 'contacts.lookupContactIdByAddr', email: string): Promise<number>
   // chat ---------------------------------------------------------------
   call(
     fnName: 'chat.getChatMedia',
@@ -257,7 +258,11 @@ class DeltaRemote {
     fnName: 'messageList.messageIdToJson',
     id: number
   ): Promise<{ msg: null } | MessageType>
-  call(fnName: 'messageList.getMessageIds', chatid: number): Promise<number[]>
+  call(
+    fnName: 'messageList.getMessageIds',
+    chatid: number,
+    flags?: number
+  ): Promise<number[]>
   call(
     fnName: 'messageList.forwardMessage',
     msgId: number,
